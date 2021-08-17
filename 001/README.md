@@ -7,17 +7,13 @@ import time
 loop = 1000000
 
 def solution_A(a, b):
-    for i in range(loop):
-        sum = 0
-        for i in range(a, b+1):
-            sum += i
+    sum = 0
+    for i in range(a, b+1):
+        sum += i
     return sum
 
 def solution_B(a, b):
-    for i in range(loop):
-        sum = 0
-        sum = (a + b) * (a - b + 1) / 2
-    return sum
+    return (a + b) * (b - a + 1) / 2
 
 
 if __name__ == "__main__":
@@ -33,8 +29,10 @@ if __name__ == "__main__":
     solution.append(solution_B)
 
     for i in range(len(solution)):
+        result.append(None)
         start = time.time()
-        result.append(solution[i](a, b))
+        for j in range(loop):
+            result[i] = solution[i](a, b)
         duration.append(time.time() - start)
 
     print(duration)

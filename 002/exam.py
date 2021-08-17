@@ -1,15 +1,18 @@
 import time
 
-loop = 1000000
+loop = 100000
 
-def solution_A(a, b):
+def solution_A(a):
     sum = 0
-    for i in range(a, b+1):
-        sum += i
+    for i in range(a + 1):
+        if i % 2 == 0:
+            sum += i
     return sum
 
-def solution_B(a, b):
-    return (a + b) * (b - a + 1) / 2
+def solution_B(a):
+    a = a // 2
+    sum = a**2 + a
+    return sum
 
 
 if __name__ == "__main__":
@@ -17,10 +20,9 @@ if __name__ == "__main__":
     duration = []
     result = []
 
-    # b 는 a보다 크다는 전제 하에 원하는 수로 바꿀 수 있다.
-    a = 1
-    b = 100
-
+    # 임의의 양의 정수 a
+    a = 100
+    
     solution.append(solution_A)
     solution.append(solution_B)
 
@@ -28,7 +30,7 @@ if __name__ == "__main__":
         result.append(None)
         start = time.time()
         for j in range(loop):
-            result[i] = solution[i](a, b)
+            result[i] = solution[i](a)
         duration.append(time.time() - start)
 
     print(duration)
